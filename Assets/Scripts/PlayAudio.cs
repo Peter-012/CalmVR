@@ -33,6 +33,7 @@ public class PlayAudio : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     public void OnPointerDown(PointerEventData eventData)
     {
         Img.color = DownColor;
+        audio.Play();
         AudioListener.pause = false;
     }
 
