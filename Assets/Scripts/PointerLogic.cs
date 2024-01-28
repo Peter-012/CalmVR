@@ -12,6 +12,8 @@ public class PointerLogic : MonoBehaviour
 
     private LineRenderer LineRender = null;
 
+
+
     private void Awake()
     {
         LineRender = GetComponent<LineRenderer>();
@@ -22,6 +24,9 @@ public class PointerLogic : MonoBehaviour
         UpdateLine();
     }
 
+
+    
+    
     private void UpdateLine()
     {
         PointerEventData data = InputModule.GetData();
