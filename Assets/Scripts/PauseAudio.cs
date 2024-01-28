@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using System.Collections;
 using System.Collections.Generic;
 
-public class PlayAudio : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
+public class PauseAudio : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
     public Color32 NormalColor = Color.white;
     public Color32 HoverColor = Color.grey;
@@ -34,7 +34,7 @@ public class PlayAudio : MonoBehaviour, IPointerEnterHandler, IPointerExitHandle
     {
         Img.color = DownColor;
         audio.Play();
-        backgroundAudio.Play();
+        backgroundAudio.Pause();
     }
 
     public void OnPointerUp(PointerEventData eventData)

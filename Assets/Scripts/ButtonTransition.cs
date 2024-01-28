@@ -8,7 +8,7 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     public Color32 NormalColor = Color.white;
     public Color32 HoverColor = Color.grey;
-    public Color32 DownColor = Color.red;
+    public Color32 DownColor = Color.white;
 
     public new AudioSource audio;
     public AudioSource backgroundAudio;
@@ -22,19 +22,16 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        Debug.Log("Enter");
         Img.color = HoverColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        Debug.Log("Exit");
         Img.color = NormalColor;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
-        Debug.Log("Down");
         Img.color = DownColor;
 
         audio.Play();
@@ -44,27 +41,11 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        Debug.Log("Up");
+
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("Click");
-    }
-}
 
-public static class FadeAudioSource
-{
-    public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
-    {
-        float currentTime = 0;
-        float start = audioSource.volume;
-        while (currentTime < duration)
-        {
-            currentTime += Time.deltaTime;
-            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
-            yield return null;
-        }
-        yield break;
     }
 }
