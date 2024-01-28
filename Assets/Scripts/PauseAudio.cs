@@ -33,8 +33,7 @@ public class PauseAudio : MonoBehaviour, IPointerEnterHandler, IPointerExitHandl
     public void OnPointerDown(PointerEventData eventData)
     {
         Img.color = DownColor;
-        audio.Play();
-        backgroundAudio.Pause();
+        AudioListener.pause = true;
     }
 
     public void OnPointerUp(PointerEventData eventData)
