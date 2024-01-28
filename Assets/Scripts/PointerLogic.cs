@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class PointerLogic : MonoBehaviour
 {
@@ -23,7 +24,9 @@ public class PointerLogic : MonoBehaviour
 
     private void UpdateLine()
     {
-        float targetLength = DefaultLength;
+        PointerEventData data = InputModule.GetData();
+        float targetLength = data.pointerCurrentRaycast.distance == 0 ? DefaultLength : data.pointerCurrentRaycast.distance;
+
         RaycastHit hit = CreateRaycast(targetLength);
         Vector3 endPosition = transform.position + (transform.forward * targetLength);
         if (hit.collider != null)
