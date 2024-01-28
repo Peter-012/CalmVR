@@ -6,7 +6,7 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
 {
     public Color32 NormalColor = Color.white;
     public Color32 HoverColor = Color.grey;
-    public Color32 DownColor = Color.white;
+    public Color32 DownColor = Color.red;
 
     private Image Img = null;
 
@@ -17,26 +17,29 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log("Enter");
         Img.color = HoverColor;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
+        Debug.Log("Exit");
         Img.color = NormalColor;
     }
 
     public void OnPointerDown(PointerEventData eventData)
     {
+        Debug.Log("Down");
         Img.color = DownColor;
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-
+        Debug.Log("Up");
     }
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Img.color = HoverColor;
+        Debug.Log("Click");
     }
 }
