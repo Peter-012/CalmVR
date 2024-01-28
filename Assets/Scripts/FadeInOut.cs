@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -65,15 +66,23 @@ public class FadeInOut : MonoBehaviour
             yield return null;
         }
         
-        nextScene();
-
         int delay = 0;
         while (delay < 20)
         {
             delay++;
             yield return null;
         }
+        
+        nextScene();
+    }
 
+
+
+    public static IEnumerator FadeOut()
+    {
+        
+        Color c = currentObj.GetComponent<Renderer>().material.color;
+        float alpha = 1;
         while (alpha > 0)
         {
             alpha -= 0.1f;
@@ -170,17 +179,20 @@ public static IEnumerator FadeOut (AudioSource audioSource, float FadeTime) {
 
     private void Awake()
     {
-        
-        
-        
-        
+        GameObject obj = GameObject.Find("[CameraRig]/Camera/Fader");
+        currentObj = obj;
+        DontDestroyOnLoad(obj);
+
+
+
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        currentObj = gameObject;
+        IEnumerator start = FadeOut();
+        StartCoroutine(start);
     }
 
     // Update is called once per frame
