@@ -1,3 +1,5 @@
+using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -31,17 +33,34 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
     }
 
     public void OnPointerDown(PointerEventData eventData)
-    {
+    {        
         Img.color = DownColor;
 
         audio.Play();
-        IEnumerator fadeSound = AudioFadeOut.FadeOut(backgroundAudio, 0.5f);
-        StartCoroutine(fadeSound);
+
+        
+       // audio.Play();
+       // IEnumerator fadeSound = AudioFadeOut.FadeOut(backgroundAudio, 0.5f);
+       // StartCoroutine(fadeSound);
+       // StopCoroutine(fadeSound);
+
+       IEnumerator backgroundFade = FadeInOut.FadeTransition();
+        StartCoroutine(backgroundFade);
+       
+
+
+
+
+
+
+        //  StartCoroutine(backgroundFade);
+        //background fade out
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
     {
-
+  
     }
 
     public void OnPointerClick(PointerEventData eventData)
