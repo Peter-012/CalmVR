@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections;
+using System.Collections.Generic;
 
 public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerDownHandler, IPointerUpHandler, IPointerClickHandler
 {
@@ -8,7 +10,8 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Color32 HoverColor = Color.grey;
     public Color32 DownColor = Color.red;
 
-    public AudioSource audio;
+    public new AudioSource audio;
+    public AudioSource backgroundAudio;
 
     private Image Img = null;
 
@@ -33,7 +36,10 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         Debug.Log("Down");
         Img.color = DownColor;
+
         audio.Play();
+        IEnumerator fadeSound = AudioFadeOut.FadeOut(backgroundAudio, 0.5f);
+        StartCoroutine(fadeSound);
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -44,5 +50,21 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public void OnPointerClick(PointerEventData eventData)
     {
         Debug.Log("Click");
+    }
+}
+
+public static class FadeAudioSource
+{
+    public static IEnumerator StartFade(AudioSource audioSource, float duration, float targetVolume)
+    {
+        float currentTime = 0;
+        float start = audioSource.volume;
+        while (currentTime < duration)
+        {
+            currentTime += Time.deltaTime;
+            audioSource.volume = Mathf.Lerp(start, targetVolume, currentTime / duration);
+            yield return null;
+        }
+        yield break;
     }
 }
