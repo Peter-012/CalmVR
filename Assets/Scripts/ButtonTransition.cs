@@ -8,6 +8,8 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
     public Color32 HoverColor = Color.grey;
     public Color32 DownColor = Color.red;
 
+    public AudioSource audio;
+
     private Image Img = null;
 
     private void Awake()
@@ -31,6 +33,7 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         Debug.Log("Down");
         Img.color = DownColor;
+        audio.Play();
     }
 
     public void OnPointerUp(PointerEventData eventData)
