@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
@@ -34,9 +35,9 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         
         Img.color = DownColor;
-<<<<<<< Updated upstream
+
         audio.Play();
-=======
+
         
        // audio.Play();
        // IEnumerator fadeSound = AudioFadeOut.FadeOut(backgroundAudio, 0.5f);
@@ -54,7 +55,7 @@ public class ButtonTransition : MonoBehaviour, IPointerEnterHandler, IPointerExi
 
         //  StartCoroutine(backgroundFade);
         //background fade out
->>>>>>> Stashed changes
+
     }
 
     public void OnPointerUp(PointerEventData eventData)
